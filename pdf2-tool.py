@@ -868,8 +868,7 @@ def extract_checkbox_labels(original_image, preprocessed_image, checkboxes, zone
     print(f" Extracted {len(results)} labels")
     return results
 
-
-def process_form(pdf_path):
+def extract_from_xfa(pdf_path):
     """Process entire form"""
     # Preprocess
     preprocessed, original = preprocess_for_checkbox_detection(pdf_path)
@@ -911,6 +910,7 @@ def process_form(pdf_path):
     idx = display_results(idx, results)
 
     return results
+
 
 def display_results(idx, results):
     for item in results:
@@ -970,7 +970,7 @@ check_dependencies()
 input_pdf = '/Users/dennislang/opt/projects/projects-python/image.pdf'
 images = diagnose_pdf_conversion(input_pdf)
 
-results = process_form(input_pdf)
+results = extract_from_xfa(input_pdf)
 
 
 print("---done---", file=sys.stderr)

@@ -1,0 +1,71 @@
+
+
+:: First convert XFA pdf to flat pdf 
+c:\opt\pdf\qpdf\qpdf-12.3.2-msvc64\bin\qpdf.exe  --qdf --object-streams=disable xfa.pdf  foo.pdf
+
+
+c:\opt\pdf\PDFtkServer\bin\pdftk.exe foo.pdf dump_data
+		InfoBegin
+		InfoKey: Creator
+		InfoValue: Designer 6.3
+		InfoBegin
+		InfoKey: Title
+		InfoValue: Emergency Medical Report (EMT-P, EMT-1, EMR), CHP 330
+		InfoBegin
+		InfoKey: Producer
+		InfoValue: Designer 6.3
+		InfoBegin
+		InfoKey: Author
+		InfoValue: Laura M. Klein
+		InfoBegin
+		InfoKey: Subject
+		InfoValue:  Form Revision 07/21 - Over a year of no progress, then all of a                      sudden - Pleae update version date to 07/21.  jc  &#13;&#10;           Gender + 1 &quot;NonBinary&quot; ? &#13;&#10;          Redisgned Emergency care administered and AED Applications           sections on page 1 - jc&#13;&#10;&#13;&#10;Form Revision 05/20 - Redisgned Emergency care administered and AED Applications sections on page 1 - jc&#13;&#10;&#13;&#10;File version 06/14 corrected Nme to Name on page 2 - mb&#13;&#10;&#13;&#10;File Version 04/14 - Corrected time fields display values   - jc &#13;&#10;&#13;&#10;Changed grey scale area shading to be compatible with various LJ printers and added automatic age calcs 4/03 jn &#13;&#10;&#13;&#10;File version 11-03 changed OPI number - mb &#13;&#10;&#13;&#10;File version 5/11 changed the weight field to be a text field to allow for entering the measurement unit. - ok&#13;&#10;&#13;&#10;04/10-Page2, Delete EMT compeltion only - jrc&#13;&#10;&#13;&#10;Changed shading to 13%, per OPI request&#13;&#10;1/04 - jc&#13;&#10;&#13;&#10;File version 11/08 corrected display of time fields under GCS section - mb
+		InfoBegin
+		InfoKey: ModDate
+		InfoValue: D:20260108125931-08'00'
+		InfoBegin
+		InfoKey: CreationDate
+		InfoValue: D:20210629132150-07'00'
+		PdfID0: 2c445d5ae1c02c49b385171b521cc3e6
+		PdfID1: 6f5b15bf4c2b0d7f744102d26461a2d3
+		NumberOfPages: 1
+		PageMediaBegin
+		PageMediaNumber: 1
+		PageMediaRotation: 0
+		PageMediaRect: 0 0 612 792
+		PageMediaDimensions: 612 792
+
+
+
+
+c:\opt\pdf\PDFtkServer\bin\pdftk.exe std.pdf dump_data
+		InfoBegin
+		InfoKey: Producer
+		InfoValue: macOS Version 26.2 (Build 25C56) Quartz PDFContext
+		InfoBegin
+		InfoKey: ModDate
+		InfoValue: D:20260217221006Z00'00'
+		InfoBegin
+		InfoKey: CreationDate
+		InfoValue: D:20260217221006Z00'00'
+		PdfID0: 0857ca975104243202614d7114332302
+		PdfID1: 0857ca975104243202614d7114332302
+		NumberOfPages: 2
+		PageMediaBegin
+		PageMediaNumber: 1
+		PageMediaRotation: 0
+		PageMediaRect: 0 0 613.44 792
+		PageMediaDimensions: 613.44 792
+		PageMediaBegin
+		PageMediaNumber: 2
+		PageMediaRotation: 0
+		PageMediaRect: 0 0 613.44 792
+		PageMediaDimensions: 613.44 792
+
+
+:: Extract parts
+ c:\opt\pdf\exiftool-13.50_64\exiftool.exe -ee -b -W %d%f_%t.%s std.pdf
+:: Display information
+ c:\opt\pdf\exiftool-13.50_64\exiftool.exe  -ee3 -G1:3 ..\foo.pdf
+ 
+

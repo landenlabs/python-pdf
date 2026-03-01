@@ -1,5 +1,7 @@
 
 data/
+pdf-image/
+pdf-xfa/
 out/
 build/
 dist/
@@ -12,7 +14,12 @@ lib/
 .venv
 env/
 venv/
+__pycache__/
 
 # PyCharm
 .idea/
 .vscode/
+
+debug*
+*.csv
+
