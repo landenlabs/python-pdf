@@ -20,9 +20,16 @@ from pathlib import Path
 import pdfplumber  # python -m pip install pdfplumber
 from lxml import etree  # pip install lxml
 import xml.etree.ElementTree as ET
+import pkg_resources
+
 
 #
 # Windows
+#    Automate installing all depenencies - first manually install pipreqs
+#      python -m pip install pipreqs
+#      python -m pipreqs.pipreqs . --force
+#      pip install -r requirements.txt
+#
 #    Run python only from command line:
 #      python -m pip install --upgrade pip
 #      python -m pip install opencv-python
@@ -705,13 +712,14 @@ def pdf_info(args):
             pattern = "**/*.pdf" if args.recurse else "*.pdf"
             files_to_process.extend(path_obj.glob(pattern))
 
+    print(f"{'Type':<15}, {'Pages':<5}, {'Images':<6}, Path")
     for file_path in files_to_process:
         # Check exclusion regex
         if any(r.search(str(file_path)) for r in exclude_regex):
             continue
 
         result = show_pdf_info(file_path)
-        print(f"[{result['type']:<15}, Pages:{result['pages']:<5}, Images:{result['images']:<5}] {file_path}  ")
+        print(f"{result['type']:<15}, {result['pages']:<5}, {result['images']:<6}, {file_path}  ")
 
 
 if __name__ == "__main__":
@@ -720,6 +728,7 @@ if __name__ == "__main__":
         # Get the name of the file (e.g., 'pdf-info.exe' or 'pdf-extract.py')
         program_name = Path(sys.argv[0]).stem.lower()
         args = parse_arguments()
+
         if args.info:
             pdf_info(args)
         elif args.extract:
