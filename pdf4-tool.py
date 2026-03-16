@@ -2,7 +2,6 @@
 
 import cv2
 import numpy as np
-from numpy.f2py.auxfuncs import get_kind
 from pdf2image import convert_from_path
 from PIL import Image
 import pytesseract
@@ -17,11 +16,10 @@ import traceback
 import fitz  # pip install pymupdf
 import pikepdf  # pip install pikepdf
 from pathlib import Path
-import pdfplumber  # python -m pip install pdfplumber
+import pdfplumber  # pip install pdfplumber
 from lxml import etree  # pip install lxml
 import xml.etree.ElementTree as ET
-import pkg_resources
-
+import importlib.metadata
 
 #
 # Windows
